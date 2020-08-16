@@ -1,0 +1,18 @@
+@import 'global/fonts';
+
+$color--primary: #000000;
+$color--secondary: #FFFFFF;
+$color--gray: #686868;
+$color--grey: $color--gray;
+$font--primary: 'Campton', sans-serif;
+$font: $font--primary;
+$content-width: 1366px;
+
+@import 'global/mixins';
+@import 'global/normalize';
+@import 'global/form';
+@import 'global/base';
+
+@import 'components/header';
+@import 'components/off-canvas';
+@import 'components/footer';

@@ -1,0 +1,98 @@
+.form {
+  width:100%;
+  max-width:610px;
+  margin:0 auto;
+  .btn {
+    margin-top:20px;
+  }
+  input, textarea {
+    background:transparent;
+    color:$color--primary;
+    border:0;
+    font-size:16px;
+    font-weight:300;
+    width:100%;
+    padding:10px 0 5px;
+    font-family:$font;
+    border-bottom:1px solid $color--primary;
+    border-radius:0;
+    @include breakpoint(medium) {
+      font-size:13px;
+    }
+    &::placeholder {
+      color:$color--primary;
+      opacity:1;
+    }
+    &:focus {
+      outline:0;
+    }
+  }
+  button[type="submit"] {
+    border:0;
+    border-bottom:1px solid $color--primary;
+    background:transparent;
+    padding:10px 0 2px;
+    color:$color--primary;
+    font-size:16px;
+    line-height:1;
+    cursor:pointer;
+    &:focus {
+      outline:0;
+    }
+  }
+  &__row {
+    margin:0 0 15px;
+    &--double {
+      display:flex;
+      flex-wrap:wrap;
+      justify-content:space-between;
+      input {
+        width:48%;
+      }
+    }
+    &--subscribe {
+      display:flex;
+      flex-wrap:wrap;
+      justify-content:space-between;
+      position:relative;
+      width:100%;
+      label {
+        font-size:16px;
+        line-height:24px;
+        width:80px;
+        margin-top:25px;
+        @include breakpoint(medium) {
+          margin-top:0;
+        }
+      }
+      input {
+        width:100%;
+        padding-top:0;
+        padding-bottom:0px;
+        margin-top:15px;
+        @include breakpoint(medium) {
+          width:245px;
+          margin-top:-15px;
+        }
+      }
+      button[type="submit"] {
+        position:absolute;
+        bottom:5px;
+        right:0;
+        font-size:11px;
+        padding:5px 0 2px;
+      }
+    }
+    &:last-of-type {
+      margin-bottom:0;
+    }
+  }
+}
+
+.page-template.subscribe {
+  .newsletter {
+    .form button[type="submit"] {
+      color:#fff;
+    }
+  }
+}
