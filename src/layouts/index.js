@@ -2,8 +2,6 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { StaticQuery, graphql } from 'gatsby'
 
-import Transition from '../components/transition'
-
 import '../assets/scss/main.scss'
 
 const Layout = ({ children, location }) => (
@@ -20,9 +18,7 @@ const Layout = ({ children, location }) => (
     render={data => {
       return (
         <>
-          <Transition location = {location}>
-            <main>{ children }</main>
-          </Transition>
+          <main>{ children }</main>
         </>
       )
     }
