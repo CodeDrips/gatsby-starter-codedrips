@@ -2,10 +2,7 @@
 
 $color--primary: #000000;
 $color--secondary: #FFFFFF;
-$color--gray: #686868;
-$color--grey: $color--gray;
-$font--primary: 'Campton', sans-serif;
-$font: $font--primary;
+$font--primary: 'Helvetica', sans-serif;
 $content-width: 1366px;
 
 @import 'global/mixins';
@@ -13,6 +10,6 @@ $content-width: 1366px;
 @import 'global/form';
 @import 'global/base';
 
-//@import 'components/header';
-//@import 'components/off-canvas';
-//@import 'components/footer';
+@import 'components/header';
+@import 'components/off-canvas';
+@import 'components/footer';

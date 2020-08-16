@@ -1,152 +1,52 @@
-::-moz-selection { /* Code for Firefox */
+::-moz-selection {
   color: $color--secondary;
-  background: $color--gray;
+  background: $color--primary;
 }
 
 ::selection {
   color: $color--secondary;
-  background: $color--gray;
+  background: $color--primary;
 }
 
 body {
-  width:100vw;
-  overflow-x:hidden;
+  width: 100vw;
+  overflow-x: hidden;
   min-height: 100vh;
-
-  #___gatsby {
-    width:100vw;
-  }
-
-  main {
-    display: block;
-
-    a {
-      color: var(--theme-text-color);
-    }
-  }
-
-}
-
-.site-wrapper {
-  min-height: 100vh;
-  @include breakpoint(medium) {
-    background:#fff;
-  }
-}
-
-.container, .row {
-  margin:0 auto;
-  max-width:1366px;
-  padding:0 33px;
-}
-
-.row {
-  display: flex;
-  flex-wrap: wrap;
-  padding: 0 18px 48px;
-
-  @include breakpoint(medium) {
-    padding: 0 33px 34px;
-  }
-
-  .col {
-    width: 100%;
-    @include breakpoint(medium) {
-      width: calc(33% - 24px);
-      margin-right: 42px;
-    }
-
-    &:last-of-type {
-      margin-right: 0;
-    }
-
-    .card {
-      margin-bottom: 16px;
-
-      @include breakpoint(medium) {
-        margin-bottom: 0;
-      }
-    }
-  }
-}
-
-.error404 {
-  width:100vw;
-  padding:220px 0;
-  position:relative;
-  background:$color--primary;
-  min-height:100vh;
-  &__inner {
-    margin: 0 auto;
-    padding: 0 25px;
-    max-width:1100px;
-    @include breakpoint(medium) {
-      padding: 0 33px;
-    }
-  }
-  &__content {
-    width:100%;
-    max-width:695px;
-    margin-top:65px;
-    h1 {
-      font-size:36px;
-      line-height:50px;
-      font-weight:300;
-      color:$color--secondary;
-    }
-    p {
-      font-size:30px;
-      line-height:38px;
-      font-weight:300;
-      color:$color--secondary;
-      span {
-        margin:0 20px;
-      }
-    }
-    a, span {
-      color:$color--secondary;
-    }
-  }
-}
-
-h1,h2 {
-  font-family: $font;
-  font-weight: 500;
-}
-
-h3,h4,h5,h6 {
-  font-family: $font;
-  font-weight: 500;
 }
 
 h1 {
-  font-size: 36px; 
-  line-height: 50px;
+  
 }
 
 h2 {
-  font-size: 24px; 
-  line-height: 30px;
+  
 }
 
 h3 {
-  font-size: 30px;
-  line-height: 38px;
+  
+}
+
+h4 {
+  
+}
+
+h5 {
+  
+}
+
+h6 {
+  
 }
 
 p, ul, li, ol, span, div, table {
   font-family: $font;
-  font-size:16px;
+  font-size: 16px;
   font-weight: 300;
-  line-height:1.2;
+  line-height: 1.2;
 }
 
 a {
   font-family: $font;
-}
-
-.error-404 {
-  text-align:center;
-  padding:100px 0;
+  color: $color--primary;
 }
 
