@@ -3,7 +3,6 @@ import { graphql } from 'gatsby'
 import he from 'he'
 
 import SEO from '../components/seo'
-import RenderBlock from '../utils/render-block'
 
 class IndexPage extends Component {
 
