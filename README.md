@@ -46,8 +46,7 @@ A quick look at the base for this starter.
     │   │   └── index.js
     │   ├── templates
     │   └── utils
-    │       ├── link.js
-    │       └── render-block.js
+    │       └── link.js
     ├── static
     │   └── _redirects
     └── yarn.lock
