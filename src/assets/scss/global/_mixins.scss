@@ -37,3 +37,12 @@ BREAKPOINTS
   }
 
 }
+
+@mixin inner() {
+  max-width: $global-width;
+  margin: 0 auto;
+  padding: 0 20px;
+  @include breakpoint(medium) {
+    padding: 0 30px;
+  }
+}
