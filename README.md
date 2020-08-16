@@ -20,9 +20,7 @@ A quick look at the base for this starter.
     .
     ├── LICENSE
     ├── README.md
-    ├── gatsby-browser.js
     ├── gatsby-config.js
-    ├── gatsby-node.js
     ├── package.json
     ├── src
     │   ├── assets
