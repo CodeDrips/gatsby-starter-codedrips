@@ -14,8 +14,8 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `atollon-design-studio`,
-        short_name: `atollon`,
+        name: `codedrips`,
+        short_name: `codedrips`,
         start_url: `/`,
         background_color: `#000000`,
         theme_color: `#000000`,

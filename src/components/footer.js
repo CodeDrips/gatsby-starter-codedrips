@@ -6,7 +6,7 @@ class Footer extends Component {
     return (
       <footer className='footer'>
         <div className='footer__inner'>
-          <Link to='/' title='Marchetti Chwyla' className='footer__logo'>
+          <Link to='/' title='Site Name' className='footer__logo'>
             Site Name
           </Link>
         </div>

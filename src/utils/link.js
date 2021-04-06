@@ -1,5 +1,5 @@
 import React from 'react'
-import GatsbyLink from 'gatsby-link'
+import { Link as GatsbyLink } from 'gatsby'
 
 const Link = props => {
   if (props.to.indexOf('//') === -1 && props.to.indexOf('mailto:') === -1 && props.to.indexOf('tel:') === -1) {

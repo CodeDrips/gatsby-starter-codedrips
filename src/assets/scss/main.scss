@@ -3,6 +3,7 @@
 $color--primary: #000000;
 $color--secondary: #FFFFFF;
 $font--primary: 'Helvetica', sans-serif;
+$font: $font--primary;
 $content-width: 1366px;
 
 @import 'global/mixins';
