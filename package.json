@@ -1,13 +1,13 @@
 {
-  "name": "gatsby-starter-default",
+  "name": "gatsby-starter-codedrips",
   "private": true,
   "description": "A simple starter to get up and developing quickly with Gatsby",
-  "version": "0.1.0",
-  "author": "Kyle Mathews <mathews.kyle@gmail.com>",
+  "version": "0.3.1",
+  "author": "CodeDrips <dev@codedrips.com>",
   "dependencies": {
     "gatsby": "^3.6.0",
     "gatsby-image": "^3.6.0",
-    "gatsby-plugin-google-analytics": "^3.6.0",
+    "gatsby-plugin-google-gtag": "^3.6.0",
     "gatsby-plugin-layout": "^2.6.0",
     "gatsby-plugin-manifest": "^3.6.0",
     "gatsby-plugin-offline": "^4.6.0",
