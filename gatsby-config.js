@@ -33,11 +33,16 @@ module.exports = {
     },
     /*
     {
-      resolve: "gatsby-source-wordpress",
+      resolve: `gatsby-source-wordpress`,
       options: {
-        baseUrl: "wordpress.atollon.com.au",
-        protocol: "https",
-      }
+        url: `https://backend.wpengine.com/graphql`,
+        auth: {
+          htaccess: {
+            username: "demo",
+            password: "password",
+          }
+        }
+      },
     },
     {
       resolve: `gatsby-plugin-sitemap`
