@@ -3,7 +3,10 @@ import PropTypes from 'prop-types'
 import Helmet from 'react-helmet'
 import { StaticQuery, graphql } from 'gatsby'
 
-function SEO({ description, lang, meta, keywords, title, bodyClass }) {
+function SEO({
+  description, lang, meta, keywords, title,
+  bodyClass, schema = '', image = null, opengraphType = 'website'
+}) {
   return (
     <StaticQuery
       query={detailsQuery}
@@ -32,7 +35,11 @@ function SEO({ description, lang, meta, keywords, title, bodyClass }) {
               },
               {
                 property: `og:type`,
-                content: `website`,
+                content: opengraphType,
+              },
+              {
+                property: `og:image`,
+                content: data.site.siteMetadata.siteUrl + image,
               },
               {
                 name: `twitter:card`,
@@ -50,6 +57,10 @@ function SEO({ description, lang, meta, keywords, title, bodyClass }) {
                 name: `twitter:description`,
                 content: metaDescription,
               },
+              {
+                name: `twitter:image`,
+                content: data.site.siteMetadata.siteUrl + image,
+              },
             ]
               .concat(
                 keywords.length > 0
@@ -61,6 +72,7 @@ function SEO({ description, lang, meta, keywords, title, bodyClass }) {
               )
               .concat(meta)}
           >
+            <script type="application/ld+json">{ `${schema}` }</script>
             <body className={bodyClass} />
           </Helmet>
         )
@@ -93,6 +105,7 @@ const detailsQuery = graphql`
         title
         description
         author
+        siteUrl
       }
     }
   }
