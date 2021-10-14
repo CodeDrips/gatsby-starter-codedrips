@@ -2,7 +2,7 @@ import React from 'react'
 import { Link as GatsbyLink } from 'gatsby'
 
 const Link = props => {
-  if (props.to.indexOf('//') === -1 && props.to.indexOf('mailto:') === -1 && props.to.indexOf('tel:') === -1) {
+  if (props.to && props.to.indexOf('//') === -1 && props.to.indexOf('mailto:') === -1 && props.to.indexOf('tel:') === -1) {
     return <GatsbyLink {...props}>{props.children}</GatsbyLink>
   }
 
