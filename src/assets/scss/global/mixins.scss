@@ -11,6 +11,35 @@ BREAKPOINTS
   }
 }
 
+@mixin plyr($color:#64656A) {
+  .plyr__control--overlaid {
+    background: rgba($color, 0.8);
+    width: 60px;
+    justify-content: center;
+    display: flex !important;
+    height: 40px;
+    border-radius: 6px;
+    align-items: center;
+    background: black;
+    margin-top: 10px;
+    @include breakpoint (small) {
+      margin-top: 0px;
+    }
+  }
+
+  input[type=range] {
+    color:$color;
+  }
+
+  .plyr__control.plyr__tab-focus {
+    box-shadow: 0 0 0 5px rgba($color, 0.5);
+  }
+
+  .plyr__control.plyr__tab-focus, .plyr__control:hover, .plyr__control[aria-expanded=true] {
+    background: $color;
+  }
+}
+
 @mixin hoverline($color: #000, $size: 1px) {
   position: relative;
   overflow: hidden;
