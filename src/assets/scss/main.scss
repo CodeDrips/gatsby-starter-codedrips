@@ -6,7 +6,14 @@ $color--primary: #000000;
 $color--secondary: #FFFFFF;
 $font--primary: 'Helvetica', sans-serif;
 $font: $font--primary;
-$content-width: 1366px;
+
+$content-width: 1440px;
+
+$header-height--mobile: 80px;
+$header-height--desktop: 90px;
+
+$gutter-width--mobile: 24px;
+$gutter-width--desktop: 48px;
 
 @import 'global/mixins';
 @import 'global/normalize';
@@ -16,3 +23,4 @@ $content-width: 1366px;
 @import 'components/header';
 @import 'components/off-canvas';
 @import 'components/footer';
+@import 'components/video';

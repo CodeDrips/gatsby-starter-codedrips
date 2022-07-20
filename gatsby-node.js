@@ -1,34 +1,48 @@
-// const path = require("path")
+const query = `
+{
+  allWpPage {
+    nodes {
+      id
+      uri
+      settings {
+        header
+      }
+    }
+  }
+  allWpPost {
+    nodes {
+      id
+      uri
+    }
+  }
+}
+`
 
-// const query = `
-// {
-//   allWpPage {
-//     edges {
-//       node {
-//         id
-//         slug
-//         title
-//       }
-//     }
-//   }
-// }
-// `
+exports.createPages = async ({ graphql, actions }) => {
+  const { createPage } = actions
 
-// exports.createPages = async ({ graphql, actions }) => {
-//   const { createPage } = actions
+  const res = await graphql(query)
 
-//   const res = await graphql(query)
+  res.data.allWpPage.nodes.map((node) => {
+    createPage({
+      path: node.uri,
+      component: require.resolve("./src/templates/page.js"),
+      context: {
+        id: node.id,
+        header: node.settings.header,
+      },
+    })
+  })
 
-//   res.data.allWpPage.edges.map((edge) => {
-//     let pathName = `/${edge.node.slug}/`
-//     if (edge.node.slug === "test-page" ) return
-//     if (edge.node.slug === "home") pathName = "/"
-//     createPage({
-//       path: pathName,
-//       component: path.resolve("./src/templates/page.js"),
-//       context: {
-//         id: edge.node.id,
-//       },
-//     })
-//   })
-// }
+  res.data.allWpPost.nodes.map((node) => {
+    createPage({
+      path: node.uri,
+      component: require.resolve("./src/templates/post.js"),
+      context: {
+        id: node.id,
+        header: 'white',
+      },
+    })
+  })
+
+}

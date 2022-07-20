@@ -11,6 +11,15 @@ BREAKPOINTS
   }
 }
 
+@mixin breakpointdown($point) {
+  @if $point == large {
+     @media (max-width: 1241px) { @content; }
+  }
+  @else if $point == medium {
+     @media (max-width: 901px) { @content; }
+  }
+}
+
 @mixin plyr($color:#64656A) {
   .plyr__control--overlaid {
     background: rgba($color, 0.8);
@@ -20,7 +29,6 @@ BREAKPOINTS
     height: 40px;
     border-radius: 6px;
     align-items: center;
-    background: black;
     margin-top: 10px;
     @include breakpoint (small) {
       margin-top: 0px;
@@ -40,17 +48,20 @@ BREAKPOINTS
   }
 }
 
-@mixin hoverline($color: #000, $size: 1px) {
+@mixin hoverline($color: $color--primary, $size: 1px) {
   position: relative;
   overflow: hidden;
-  padding-bottom: 2px;
+  padding: 2px 0 2px;
+  box-sizing: border-box;
   margin-bottom: -2px;
+	text-decoration: none;
   cursor: pointer;
   color: $color;
+  display: inline-block;
 
   &::before {
     position: absolute;
-    z-index: -1;
+    z-index: 0;
     content: "";
     left: 0;
     bottom: 0;
@@ -61,7 +72,7 @@ BREAKPOINTS
     transform: translateX(-101%);
   }
 
-  &:hover::before {
+  &:hover::before, &.active::before {
     transform: translateX(0);
   }
 
@@ -70,8 +81,8 @@ BREAKPOINTS
 @mixin inner() {
   max-width: $content-width;
   margin: 0 auto;
-  padding: 0 20px;
+  padding: 0 $gutter-width--mobile;
   @include breakpoint(medium) {
-    padding: 0 30px;
+    padding: 0 $gutter-width--desktop;
   }
 }

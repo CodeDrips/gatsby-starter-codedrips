@@ -1,17 +1,40 @@
+require("dotenv").config({
+  path: `.env.${process.env.NODE_ENV}`,
+})
+
 module.exports = {
   siteMetadata: {
-    title: `Gatsby Starter CodeDrips`,
-    description: `Gatsby Starter CodeDrips`,
+    title: `Site Name`,
+    description: `Site Description`,
     author: `@codedrips`,
-    siteUrl: `https://codedrips.com`,
+    siteUrl: `https://${process.env.SITE_URL}/`,
   },
   plugins: [
     `gatsby-plugin-sass`,
     `gatsby-plugin-layout`,
     `gatsby-plugin-react-helmet`,
     `gatsby-transformer-sharp`,
-    `gatsby-plugin-sharp`,
     `gatsby-plugin-image`,
+    {
+      resolve: `gatsby-plugin-sharp`,
+      options: {
+        failOnError: false,
+        defaultQuality: 100,
+        defaults: {
+          formats: [`auto`],
+          placeholder: `dominantColor`,
+          breakpoints: [900],
+          quality: 100,
+          backgroundColor: `transparent`,
+          tracedSVGOptions: {},
+          blurredOptions: {},
+          jpgOptions: {},
+          pngOptions: {},
+          webpOptions: {},
+          avifOptions: {},
+        },
+      },
+    },
     {
       resolve: `gatsby-source-filesystem`,
       options: {
@@ -22,8 +45,8 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `codedrips`,
-        short_name: `codedrips`,
+        name: `site long name`,
+        short_name: `site shortname`,
         start_url: `/`,
         background_color: `#000000`,
         theme_color: `#000000`,
@@ -31,17 +54,26 @@ module.exports = {
         icon: `src/assets/images/favicon.png`, // This path is relative to the root of the site.
       },
     },
-    /*
     {
       resolve: `gatsby-source-wordpress`,
       options: {
-        url: `https://backend.wpengine.com/graphql`,
+        url: `https://${process.env.WP_URL}/graphql`,
         auth: {
           htaccess: {
             username: "demo",
             password: "password",
           }
-        }
+        },
+        schema: {
+          requestConcurrency: 5,
+          previewRequestConcurrency: 2,
+          perPage: 10,
+        },
+        develop: {
+          nodeUpdateInterval: 300 * 1000,
+          hardCacheMediaFiles: true,
+          //hardCacheData: true,
+        },
       },
     },
     {
@@ -50,38 +82,22 @@ module.exports = {
     {
       resolve: 'gatsby-plugin-robots-txt',
       options: {
-        host: 'https://atollon.com.au',
-        sitemap: 'https://atollon.com.au/sitemap.xml',
+        host: `https://${process.env.SITE_URL}`,
+        sitemap: `https://${process.env.SITE_URL}/sitemap/sitemap-index.xml`,
         policy: [{ userAgent: '*', allow: '/' }]
       }
     },
     {
-      resolve: `gatsby-plugin-google-gtag`,
+      resolve: `gatsby-plugin-gatsby-cloud`,
       options: {
-        // You can add multiple tracking ids and a pageview event will be fired for all of them.
-        trackingIds: [
-          "GA-TRACKING_ID", // Google Analytics / GA
-          "AW-CONVERSION_ID", // Google Ads / Adwords / AW
-          "DC-FLOODIGHT_ID", // Marketing Platform advertising products (Display & Video 360, Search Ads 360, and Campaign Manager)
-        ],
-        // This object gets passed directly to the gtag config command
-        // This config will be shared across all trackingIds
-        gtagConfig: {
-          optimize_id: "OPT_CONTAINER_ID",
-          anonymize_ip: true,
-          cookie_expires: 0,
-        },
-        // This object is used for configuration specific to this plugin
-        pluginConfig: {
-          // Puts tracking script in the head instead of the body
-          head: false,
-          // Setting this parameter is also optional
-          respectDNT: true,
-          // Avoids sending pageview hits from custom paths
-          exclude: ["/preview/**", "/do-not-track/me/too/"],
-        },
+        headers: {}, // option to add more headers. `Link` headers are transformed by the below criteria
+        allPageHeaders: [], // option to add headers for all pages. `Link` headers are transformed by the below criteria
+        mergeSecurityHeaders: true, // boolean to turn off the default security headers
+        mergeLinkHeaders: true, // boolean to turn off the default gatsby js headers
+        mergeCachingHeaders: true, // boolean to turn off the default caching headers
+        transformHeaders: (headers, path) => headers, // optional transform for manipulating headers under each path (e.g.sorting), etc.
+        generateMatchPathRewrites: true, // boolean to turn off automatic creation of redirect rules for client only paths
       },
     },
-    */
   ],
 }
