@@ -29,12 +29,15 @@ A quick look at the base for this starter.
     │   │   │   └── favicon.png
     │   │   └── scss
     │   │       ├── components
+    │   │       │   ├── header.scss
+    │   │       │   ├── footer.scss
+    │   │       │   └── video.scss
     │   │       ├── global
-    │   │       │   ├── _base.scss
-    │   │       │   ├── _fonts.scss
-    │   │       │   ├── _form.scss
-    │   │       │   ├── _mixins.scss
-    │   │       │   └── _normalize.scss
+    │   │       │   ├── base.scss
+    │   │       │   ├── fonts.scss
+    │   │       │   ├── form.scss
+    │   │       │   ├── mixins.scss
+    │   │       │   └── normalize.scss
     │   │       └── main.scss
     │   ├── components
     │   ├── layouts
@@ -43,6 +46,10 @@ A quick look at the base for this starter.
     │   │   ├── 404.js
     │   │   └── index.js
     │   ├── templates
+    │   │   ├── page.js
+    │   │   └── post.js
+    │   ├── hooks 
+    │   │   └── use-layout-query.js
     │   └── utils
     │       └── link.js
     ├── static
