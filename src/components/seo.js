@@ -1,105 +1,126 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import Helmet from 'react-helmet'
-import { StaticQuery, graphql } from 'gatsby'
+import React from "react"
+import PropTypes from "prop-types"
+import { Helmet } from "react-helmet"
+import { useStaticQuery, graphql } from "gatsby"
 
-function SEO({
-  description, lang, meta, keywords, title,
-  bodyClass, schema = '', image = null, opengraphType = 'website'
+function Seo({
+  children,
+  title,
+  metaDesc,
+  metaKeywords,
+  meta,
+  lang,
+  opengraphImage,
+  opengraphUrl,
+  schema,
+  bodyClass,
 }) {
+  const { site, wp } = useStaticQuery(query)
+
+  const metaDescription = metaDesc || site.siteMetadata.description
+  const path = opengraphUrl?.replace(process.env.GATSBY_PREVIEW_URL, '') || ''
+  const url = `${site.siteMetadata.siteUrl}${path}`
+
+  const image = opengraphImage?.localFile?.publicURL || wp.seo.schema?.logo?.sourceUrl
+
   return (
-    <StaticQuery
-      query={detailsQuery}
-      render={data => {
-        const metaDescription =
-          description || data.site.siteMetadata.description
-        return (
-          <Helmet
-            htmlAttributes={{
-              lang,
-            }}
-            title={title}
-            titleTemplate={`%s`}
-            meta={[
-              {
-                name: `description`,
-                content: metaDescription,
-              },
-              {
-                property: `og:title`,
-                content: title,
-              },
-              {
-                property: `og:description`,
-                content: metaDescription,
-              },
-              {
-                property: `og:type`,
-                content: opengraphType,
-              },
-              {
-                property: `og:image`,
-                content: data.site.siteMetadata.siteUrl + image,
-              },
-              {
-                name: `twitter:card`,
-                content: `summary`,
-              },
-              {
-                name: `twitter:creator`,
-                content: data.site.siteMetadata.author,
-              },
-              {
-                name: `twitter:title`,
-                content: title,
-              },
-              {
-                name: `twitter:description`,
-                content: metaDescription,
-              },
-              {
-                name: `twitter:image`,
-                content: data.site.siteMetadata.siteUrl + image,
-              },
-            ]
-              .concat(
-                keywords.length > 0
-                  ? {
-                      name: `keywords`,
-                      content: keywords.join(`, `),
-                    }
-                  : []
-              )
-              .concat(meta)}
-          >
-            <script type="application/ld+json">{ `${schema}` }</script>
-            <body className={bodyClass} />
-          </Helmet>
-        )
-      }}
-    />
+    <Helmet
+      htmlAttributes={{ lang }}
+      title={title}
+      titleTemplate={title}
+      meta={[
+        {
+          content: `width=device-width, initial-scale=1, maximum-scale=1`,
+          name: `viewport`,
+        },
+        {
+          content: metaKeywords,
+          name: `keywords`,
+        },
+        {
+          content: site.siteMetadata.author,
+          name: `author`,
+        },
+        {
+          content: image,
+          name: `image`,
+        },
+        {
+          content: metaDescription,
+          name: `description`,
+        },
+        {
+          content: site.siteMetadata.title,
+          name: "application-name",
+        },
+        // Schema.org for Google
+        {
+          content: site.siteMetadata.title,
+          itemprop: "name",
+        },
+        {
+          content: metaDescription,
+          itemprop: "description",
+        },
+        // Open Graph
+        {
+          content: url,
+          property: `og:url`,
+        },
+        {
+          content: title,
+          property: `og:title`,
+        },
+        {
+          content: metaDescription,
+          property: `og:description`,
+        },
+        {
+          content: `website`,
+          property: `og:type`,
+        },
+        {
+          content: image ? image : wp.seo.schema?.logo?.sourceUrl,
+          property: `og:image`,
+        },
+        {
+          href: url,
+          name: "canonical",
+        },
+        {
+          href: url,
+          hreflang: "en",
+          name: "alternate",
+        },
+        {
+          href: url,
+          hreflang: "x-default",
+          name: "alternate",
+        },
+      ].concat(meta)}
+    >
+      <script type="application/ld+json">{`${schema?.raw}`}</script>
+      <body className={bodyClass} />
+      {children}
+    </Helmet>
   )
 }
 
-SEO.defaultProps = {
+Seo.defaultProps = {
   lang: `en`,
   meta: [],
-  keywords: [],
-  bodyClass: ``,
 }
 
-SEO.propTypes = {
-  description: PropTypes.string,
+Seo.propTypes = {
+  children: PropTypes.node,
   lang: PropTypes.string,
-  meta: PropTypes.array,
-  keywords: PropTypes.arrayOf(PropTypes.string),
+  bodyClass: PropTypes.string,
+  meta: PropTypes.arrayOf(PropTypes.object),
   title: PropTypes.string.isRequired,
 }
 
-export default SEO
-
-const detailsQuery = graphql`
-  query DefaultSEOQuery {
+const query = graphql`
+  query {
     site {
       siteMetadata {
         title
@@ -108,5 +129,17 @@ const detailsQuery = graphql`
         siteUrl
       }
     }
+    wp {
+      seo {
+        schema {
+          logo {
+            sourceUrl
+            altText
+          }
+        }
+      }
+    }
   }
 `
+
+export default Seo
