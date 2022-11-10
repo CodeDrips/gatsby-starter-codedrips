@@ -4,9 +4,6 @@ const query = `
     nodes {
       id
       uri
-      settings {
-        header
-      }
     }
   }
   allWpPost {
@@ -29,7 +26,6 @@ exports.createPages = async ({ graphql, actions }) => {
       component: require.resolve("./src/templates/page.js"),
       context: {
         id: node.id,
-        header: node.settings.header,
       },
     })
   })
@@ -40,7 +36,6 @@ exports.createPages = async ({ graphql, actions }) => {
       component: require.resolve("./src/templates/post.js"),
       context: {
         id: node.id,
-        header: 'white',
       },
     })
   })
