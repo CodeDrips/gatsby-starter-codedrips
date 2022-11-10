@@ -2,7 +2,7 @@
   "name": "gatsby-starter-codedrips",
   "private": true,
   "description": "A simple starter to get up and developing quickly with Gatsby",
-  "version": "0.4.0",
+  "version": "0.5.0",
   "author": "CodeDrips <dev@codedrips.com>",
   "dependencies": {
     "gatsby": "^5.0.1",
