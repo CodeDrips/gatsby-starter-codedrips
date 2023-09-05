@@ -18,20 +18,12 @@ module.exports = {
     {
       resolve: `gatsby-plugin-sharp`,
       options: {
-        failOnError: false,
-        defaultQuality: 100,
+        failOn: 'none',
+        defaultQuality: 99,
         defaults: {
-          formats: [`auto`],
           placeholder: `dominantColor`,
-          breakpoints: [900],
-          quality: 100,
+          quality: 99,
           backgroundColor: `transparent`,
-          tracedSVGOptions: {},
-          blurredOptions: {},
-          jpgOptions: {},
-          pngOptions: {},
-          webpOptions: {},
-          avifOptions: {},
         },
       },
     },
@@ -80,7 +72,7 @@ module.exports = {
       resolve: `gatsby-plugin-sitemap`
     },
     {
-      resolve: 'gatsby-plugin-robots-txt',
+      resolve: `gatsby-plugin-robots-txt`,
       options: {
         host: `https://${process.env.SITE_URL}`,
         sitemap: `https://${process.env.SITE_URL}/sitemap/sitemap-index.xml`,
